@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List covid</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="wrapper container">
+    <div class="header">
+        <h3>La liste de tous les contaminés covid</h3>
+    <hr>
+    </div>
+    <div class="content row">
+        <div class="col-md-8">
+        <!--  Add a button -->
+        <a th:href="@{/cases/showFormAdd}" class="btn btn-primary btn-sm mb-3">Nouveau cas covid</a>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                   <tr>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Addresse</th>
+                    <th>Guerri</th>
+                    <th>Action</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="case : ${cases}">
+                        <td th:text="${case.firstName}" />                        
+                        <td th:text="${case.lastName}" />                        
+                        <td th:each="d: ${case.district}" th:text="${d.name}" />
+                        <td th:text="${case.healed}" />
+                               <td>
+                            <a th:href="@{/cases/update(caseId=${case.id})}" class="btn btn-primary btn-sm mb-3">Update</a> 
+                        </td>                   
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

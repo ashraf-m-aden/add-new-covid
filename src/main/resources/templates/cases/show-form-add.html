@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire covid</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<div class="wrapper container">
+		<div class="header">
+			<h3>Ajouter un cas covid</h3>
+			<hr>
+		</div>
+		<div class="content row">
+			<div class="col-md-8">
+				<!--  Add a button -->
+				<form action="#" th:action="@{/cases/save}" th:object="${case}"
+					method="post">
+
+					<input type="hidden" th:field="*{id}"> <input type="text"
+						th:field="*{firstName}" class="form-control mb-4 col-4"
+						placeholder="First name"> <input type="text"
+						th:field="*{lastName}" class="form-control mb-4 col-4"
+						placeholder="Last name"> <input type="text"
+						th:field="*{healed}" class="form-control mb-4 col-4"
+						placeholder="Email">
+
+						<select class="form-control mb-4 col-4" th:field="*{idDistrict}">
+							<option th:each="districtO : ${districts}"
+								th:value="${districtO.id}" th:text="${districtO.name}"></option>
+						</select>
+
+					<button type="submit" class="btn btn-primary btn-sm mb-3">Enregistrer</button>
+				</form>
+				<p th:text="${error}" />
+				<a th:href="@{/cases/list}">Retour vers la liste
+					</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
